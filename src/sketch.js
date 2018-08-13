@@ -1,6 +1,4 @@
-import p5 from "p5";
-
-const sketch = (p) => {
+export default (p) => {
     p.setup = () => {
         p.createCanvas(window.innerWidth, window.innerHeight)
     }
@@ -9,7 +7,3 @@ const sketch = (p) => {
         //
     }
 }
-
-const myp5 = new p5(sketch)
-
-export default myp5
