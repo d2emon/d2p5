@@ -36,6 +36,8 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
-    "p5": "^0.7.1"
+    "file-loader": "^1.1.11",
+    "p5": "^0.7.1",
+    "url-loader": "^1.0.1"
   }
 }
