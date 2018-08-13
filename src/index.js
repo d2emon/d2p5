@@ -1,3 +1,5 @@
-import "./css/style.css";
+import "./css/style.css"
 
-console.log("Hello World");
+import "./sketch.js"
+
+console.log("Hello World")
