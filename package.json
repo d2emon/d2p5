@@ -1,0 +1,38 @@
+{
+  "name": "d2p5",
+  "version": "0.1.0",
+  "description": "Learning P5",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --colors --progress --watch --mode development",
+    "build": "webpack --colors --progress --watch --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d2emon/d2p5.git"
+  },
+  "keywords": [
+    "P5"
+  ],
+  "author": "Dmitry Kutsenko <d2emonium@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/d2emon/d2p5/issues"
+  },
+  "homepage": "https://github.com/d2emon/d2p5#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  }
+}
