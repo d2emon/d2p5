@@ -1,4 +1,3 @@
-import hint from "./images/hint.jpg"
 import background from "./images/background.jpg"
 import {Vector} from "p5"
 
