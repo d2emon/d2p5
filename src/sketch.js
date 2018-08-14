@@ -1,17 +1,15 @@
 import hint from "./images/hint.jpg"
 import background from "./images/background.jpg"
+import {Vector} from "p5"
 
 export default (p) => {
-    const width = 800 // window.innerWidth
-    const height = 800 // window.innerHeight
-    const hintImage = p.loadImage(hint)
-    const skyImage = p.loadImage(background)
+    const width = 1024 // window.innerWidth
+    const height = 600 // window.innerHeight
+
+    let hintImage
+    let skyImage
 
     let stars = []
-
-    let gfx1 = null
-    let gfx2 = null
-    let gfx3 = null
 
     const findPixel = () => {
         let x, y
@@ -23,20 +21,22 @@ export default (p) => {
         return p.createVector(x, y)
     }
 
-    const Star = function (position, target) {
+    const Star = function (position) {
         this.position = position
-        this.target = target
+        this.target = findPixel()
         this.diameter = p.random(1, 5)
+
+        stars.push(this)
+        if (stars.length > 1024) stars.shift()
     }
 
     Star.prototype.update = function () {
-        /*
-        this.position = p.Vector.lerp(
+        console.log(this.position, this.target)
+        this.position = Vector.lerp(
             this.position,
             this.target,
             0.04
         )
-        */
     }
 
     Star.prototype.draw = function ()  {
@@ -54,44 +54,20 @@ export default (p) => {
         )
     }
 
+    p.preload = () => {
+        hintImage = p.loadImage(hint)
+        skyImage = p.loadImage(background)
+    }
+
     p.setup = () => {
-        gfx1 = p.createGraphics(width, height)
-
         p.createCanvas(width, height)
-
         p.noCursor()
-
-        p.imageMode(p.CENTER)
-        p.angleMode(p.DEGREES)
-
-        p.translate(width / 2, height / 2)
-
-        p.background(40)
-
-        gfx1.stroke(200)
-        gfx1.strokeWeight(3)
-
-        for (let i = 0; i < 1000; i++) {
-            gfx1.point(
-                Math.random() * width,
-                Math.random() * height
-            )
-        }
-
-        gfx2 = {...gfx1}
-        gfx3 = {...gfx1}
-
-        p.image(gfx1, 0, 0)
-
-        p.rotate(1)
-        p.image(gfx2, 0, 0)
-
-        p.rotate(2)
-        p.image(gfx3, 0, 0)
+        p.noStroke()
     }
 
     p.draw = () => {
-        p.image(skyImage, 0, 0)
+        p.image(skyImage, 0, 0, width, height)
+        // p.background(skyImage)
 
         let position = p.createVector(p.mouseX, p.mouseY)
 
@@ -99,25 +75,12 @@ export default (p) => {
         p.ellipse(position.x, position.y, 8, 8)
 
         if (p.mouseIsPressed) {
-            let target = findPixel()
-            let star = new Star(position, target)
-            stars.push(star)
-            if (stars.length > 1000) stars.shift()
+            new Star(position)
         }
 
         stars.forEach(star => {
             star.update()
             star.draw()
         })
-
-        /*
-        p.image(gfx1, 0, 0)
-
-        p.rotate(1)
-        p.image(gfx2, 0, 0)
-
-        p.rotate(2)
-        p.image(gfx3, 0, 0)
-        */
     }
 }
